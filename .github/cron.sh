@@ -7,9 +7,10 @@ for FILENAME in ips-v4 ips-v6; do
 done
 
 if [ -n "$(git status --porcelain)" ]; then
+    pip3 install -r .github/requirements.txt
+    git diff | egrep '^[-+][^-+]' | TO=cloudflare-ips@googlegroups.com SUBJECT='update notice' .github/gmail.py
     git config --global user.name 'GitHub Actions'
     git config --global user.email "$(whoami)@$(hostname --fqdn)"
-    git diff | egrep '^[-+][^-+]' | TO=cloudflare-ips@googlegroups.com SUBJECT='update notice' .github/gmail.py
     git add --all
     git commit --all --message 'IP ranges updated'
     git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:master
