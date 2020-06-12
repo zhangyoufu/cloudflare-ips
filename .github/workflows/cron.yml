@@ -5,7 +5,6 @@ on:
 
 jobs:
   cron:
-    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,6 +14,7 @@ jobs:
         	curl --silent --show-error "https://www.cloudflare.com/${FILENAME}" | ./sort.py >"${FILENAME}"
         done
     - name: Commit if dirty
+      if: github.ref == 'refs/heads/master'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
