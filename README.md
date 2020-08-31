@@ -5,4 +5,3 @@ This repo uses GitHub Actions to monitor changes of [Cloudflare's IP ranges](htt
 # Subscribe
 
 * [Email](https://groups.google.com/forum/#!forum/cloudflare-ips/join)
-* [RSS](https://github.com/zhangyoufu/cloudflare-ips/commits/master.atom)
